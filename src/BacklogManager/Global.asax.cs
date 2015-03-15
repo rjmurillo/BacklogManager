@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Http;
 using BacklogManager.DAL;
+using BacklogManager.Migrations;
 using TodoSPA;
 
 namespace BacklogManager
@@ -10,7 +11,6 @@ namespace BacklogManager
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new BacklogDatabaseInitializer());
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
