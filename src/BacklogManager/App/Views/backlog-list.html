@@ -14,16 +14,16 @@
     <div class="widget-main no-padding">
         <div class="dialogs ace-scroll" id="sortable">
             <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:'-upvotes'">
-                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" upvotes="{{pbi.upvotes}}" user={{pbi.owner}}>
+                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" upvotes="{{pbi.upvotes}}" user={{pbi.ownerid}}>
                     <div class="user">
-                        <img alt="{{pbi.name}} Avatar" src="{{pbi.avatar}}">
-                </div>
+                        <img alt="{{pbi.owner.name}} Avatar" src="{{pbi.owner.avatar}}">
+                    </div>
                     <div class="body color-{{pbi.id % 19}}">
                         <div class="time">
                             <button ng-click="upvote()" class=" btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up" ></span>{{pbi.upvotes}}</button>
                         </div>
                         <div class="name">
-                            <a href="#">{{pbi.name}}</a>
+                            <a href="#">{{pbi.owner.name}}</a>
                         </div>
                         <div class="text">As a <span class="discipline">{{pbi.discipline}}</span>, I can <span class="action">{{pbi.action}}</span>, so that <span class="goal">{{pbi.goal}}</span>.
                         </div>

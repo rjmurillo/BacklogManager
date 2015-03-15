@@ -45,7 +45,10 @@ namespace BacklogManager.Controllers
             if (backlogItem != null)
             {
                 var current = Get(backlogItem.ID);
-                current.Title = backlogItem.Title;
+                current.Action = backlogItem.Action;
+                current.Discipline = backlogItem.Discipline;
+                current.Goal = backlogItem.Goal;
+                current.Upvotes = backlogItem.Upvotes;
                 _db.SaveChanges();
             }
         }
