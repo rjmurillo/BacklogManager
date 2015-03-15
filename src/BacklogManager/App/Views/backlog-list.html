@@ -1,16 +1,16 @@
-<div class="row">
-    <div class="col-md-2 pull-right">
-        <!--Sidebar content-->
-        <div class="input-group search">
-            <input ng-model="query" placeholder="Search" type="text" class="form-control">
-            <select ng-model="orderProp">
-                <option value="title">Alphabetical</option>
-                <option value="-id">Newest</option>
-            </select>
+<div class="widget-body">
+    <div class="row">
+        <div class="col-md-2 pull-right">
+            <!--Sidebar content-->
+            <div class="input-group search">
+                <input ng-model="query" placeholder="Search" type="text" class="form-control">
+                <select ng-model="orderProp">
+                    <option value="title">Alphabetical</option>
+                    <option value="-id">Newest</option>
+                </select>
+            </div>
         </div>
     </div>
-</div>
-<div class="widget-body">
     <div class="widget-main no-padding">
         <div class="dialogs ace-scroll">
             <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:upvotes">
@@ -25,7 +25,8 @@
                         <div class="name">
                             <a href="#">{{pbi.name}}</a>
                         </div>
-                        <div class="text">As a <span class="discipline">{{pbi.discipline}}</span>, I can <span class="action">{{pbi.action}}</span>, so that <span class="goal">{{pbi.goal}}</span>.</div>
+                        <div class="text">As a <span class="discipline">{{pbi.discipline}}</span>, I can <span class="action">{{pbi.action}}</span>, so that <span class="goal">{{pbi.goal}}</span>.
+                        </div>
 
                         <div class="date-created">
                             <span>{{'1288323623006' | date:"MM/dd/yyyy"}}</span>
