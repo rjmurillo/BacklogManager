@@ -1,10 +1,10 @@
 ﻿
-namespace TodoSPA.Controllers
+namespace BacklogManager.Models
 {
-    public class Todo 
+    public class BacklogItem 
      { 
          public int ID { get; set; } 
-         public string Description { get; set; }
+         public string Title { get; set; }
          public string Owner { get; set; } 
      } 
 

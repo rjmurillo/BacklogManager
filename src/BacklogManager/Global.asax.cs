@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
-using TodoSPA.DAL;
+using BacklogManager.DAL;
+using TodoSPA;
 
-namespace TodoSPA
+namespace BacklogManager
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<TodoListServiceContext>(new TodoListServiceInitializer());
+            Database.SetInitializer(new BacklogDatabaseInitializer());
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
