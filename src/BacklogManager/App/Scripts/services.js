@@ -23,7 +23,7 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
             // Initialize OAuth.io with public key
             OAuth.initialize("mXmUMUFVm37zUdMeXpgWancUJJ8", { cache: true });
             // Try to create an authorization result when called
-            authorizationResult = OAuth.create('twitter');
+            authorizationResult = OAuth.create("twitter");
         },
         isReady: function () {
             return authorizationResult;
@@ -33,19 +33,21 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
         },
         connectTwitter: function () {
             var deferred = $q.defer();
-            OAuth.popup('twitter', { cache: true }, function (err, res) {
-                if (!err) {
-                    authorizationResult = res;
-                    userName = res.name;
-                    deferred.resolve();
-                } else {
-                    //TODO: Something if there's an error
-                }
-            });
+            OAuth.popup("twitter", { cache: true })
+                 .done(function (result) {
+                     authorizationResult = result;
+                     result.me()
+                           .done(function (response) {
+                               userName = response.name;
+                           });
+
+                     deferred.resolve();
+
+                 });
             return deferred.promise;
         },
         clearCache: function () {
-            OAuth.clearCache('twitter');
+            OAuth.clearCache("twitter");
             authorizationResult = false;
             userName = "";
         }

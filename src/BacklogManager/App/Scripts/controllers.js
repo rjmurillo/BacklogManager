@@ -7,30 +7,45 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", funct
 
 backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location", "Twitter", function ($rootScope, $scope, $location, Twitter) {
     Twitter.initialize();
+
+    var setUserScope = function () {
+        if (User.isLogged()) {
+            var user = User.getIdentity();
+            $scope.authenticatedUser = user.data;
+        }
+    };
+
     var authenticate = function () {
         Twitter.connectTwitter()
             .then(function () {
                 if (Twitter.isReady()) {
                     $rootScope.authenticated = true;
+                    setUserScope();
                 } else {
                     $scope.error = true;
                 }
+            }, null, function (update) {
+                setUserScope();
             });
     };
 
+
+
     if (User.isLogged()) {
         $rootScope.authenticated = true;
-        $scope.authenticatedUser = { "name": Twitter.authenticatedUserName() };
-
+        setUserScope();
     } else {
         authenticate();
+        setUserScope();
     }
 
     $scope.signIn = function () {
         authenticate();
+        setUserScope();
     }
 
     $scope.signOut = function () {
         Twitter.clearCache();
+        setUserScope();
     }
 }]);
