@@ -20,6 +20,9 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
             .then(function () {
                 if (Twitter.isReady()) {
                     $rootScope.authenticated = true;
+                    Twitter.isReady().me().done(function(me) {
+                        $scope.me = me;
+                    });
                     setUserScope();
                 } else {
                     $scope.error = true;

@@ -39,7 +39,7 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
                      result.me()
                            .done(function (response) {
                                userName = response.name;
-                           });
+                     });
 
                      deferred.resolve();
 
