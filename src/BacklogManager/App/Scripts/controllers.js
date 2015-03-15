@@ -17,16 +17,16 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
 
     var authenticate = function () {
         Twitter.connectTwitter()
-            .then(function () {
-                if (Twitter.isReady()) {
-                    $rootScope.authenticated = true;
-                    setUserScope();
-                } else {
-                    $scope.error = true;
-                }
-            }, null, function (update) {
-                setUserScope();
-            });
+               .then(function () {
+                   if (Twitter.isReady()) {
+                       $rootScope.authenticated = true;
+                       setUserScope();
+                   } else {
+                       $scope.error = true;
+                   }
+               }, null, function (update) {
+                   setUserScope();
+               });
     };
 
 
