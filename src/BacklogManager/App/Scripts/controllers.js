@@ -1,13 +1,8 @@
 ﻿var backlogControllers = angular.module("backlogControllers", []);
 
 backlogControllers.controller("BacklogListCtrl", ["$scope", "$http", function ($scope, $http) {
-    $scope.productBacklogItems = [
-        { "title": "My first PBI" },
-        { "title": "My second PBI" },
-        { "title": "My third PBI" },
-        { "title": "My fourth PBI" },
-        { "title": "My fifth PBI" },
-    ];
+    $http.get("/App/Data/backlog.json")
+        .success(function(data) { $scope.productBacklogItems = data; });
 
     $scope.orderProp = "age";
 }]);
