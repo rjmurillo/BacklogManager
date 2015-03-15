@@ -13,7 +13,7 @@
     </div>
     <div class="widget-main no-padding">
         <div class="dialogs ace-scroll">
-            <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:upvotes">
+            <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:'-upvotes'">
                 <div class="itemdiv dialogdiv">
                     <div class="user">
                         <img alt="{{pbi.name}} Avatar" src="{{pbi.avatar}}">
