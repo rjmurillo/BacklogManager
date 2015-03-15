@@ -2,16 +2,9 @@
 
 backlogServices.factory("BacklogItem", ["$resource", function ($resource) {
     return $resource(
-        "/api/:backlogItemId",
-        {},
-        {
-            query:
-            {
-                method: "GET",
-                params: { backlogItemId: "backlog" },
-                isArray: true
-            }
-        });
+        "/api/backlog/:backlogId",
+        {backlogId:'@id'}
+        );
 }]);
 
 backlogServices.factory("Twitter", ["$q", function ($q) {

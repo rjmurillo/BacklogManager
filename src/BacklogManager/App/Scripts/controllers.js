@@ -1,12 +1,31 @@
 ﻿var backlogControllers = angular.module("backlogControllers", []);
 
 backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", function ($scope, BacklogItem) {
-    $scope.productBacklogItems = BacklogItem.query();
+
     $scope.orderProp = "globalRank";
 
-    $scope.upvote = function () {
-        alert("to do!");
+    $scope.editInProgressBacklogItem = {
+        action: "",
+        discipline: "",
+        goal: "",
+        upvotes: 0,
+        globalRank: 0,
+        id: 0
+    };
+
+    $scope.populate = function () {
+        $scope.productBacklogItems = BacklogItem.query();
+    };
+
+    $scope.upvote = function (item) {
+        var item2 = BacklogItem.get({ id: item.id }, function() {
+            item2.upvotes += 1;
+            item2.$save();
+            $scope.populate();
+        });
     }
+
+    $scope.populate();
 }]);
 
 backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location", "Twitter", function ($rootScope, $scope, $location, Twitter) {

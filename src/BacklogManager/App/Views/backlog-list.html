@@ -22,7 +22,7 @@
                     </div>
                     <div class="body color-{{pbi.id % 19}}">
                         <div class="time">
-                            <button ng-click="upvote()" class=" btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span>{{pbi.upvotes}}</button>
+                            <button ng-click="upvote(pbi)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up" ></span>{{pbi.upvotes}}</button>
                         </div>
                         <div class="name">
                             <a href="#">{{pbi.owner.name}}</a>
