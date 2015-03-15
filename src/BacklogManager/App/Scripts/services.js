@@ -2,13 +2,13 @@
 
 backlogServices.factory("BacklogItem", ["$resource", function ($resource) {
     return $resource(
-        "backlogItems/:backlogItemId.json",
+        "/App/Data/:backlogItemId.json",
         {},
         {
             query:
             {
                 method: "GET",
-                params: { backlogItemId: "backlogItems" },
+                params: { backlogItemId: "backlog" },
                 isArray: true
             }
         });

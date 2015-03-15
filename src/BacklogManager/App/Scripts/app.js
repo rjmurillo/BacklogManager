@@ -1,4 +1,4 @@
-﻿var backlogApp = angular.module("backlogApp", ["ngRoute", "backlogControllers"]);
+﻿var backlogApp = angular.module("backlogApp", ["ngRoute", "backlogControllers", "backlogServices"]);
 
 backlogApp.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
