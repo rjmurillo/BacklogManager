@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="widget-main no-padding">
-        <div class="dialogs ace-scroll">
+        <div class="dialogs ace-scroll" id="sortable">
             <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:'-upvotes'">
                 <div class="itemdiv dialogdiv">
                     <div class="user">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="body color-{{pbi.id % 19}}">
                         <div class="time">
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span>{{pbi.upvotes}}</a>
+                            <button ng-click="upvote()" class=" btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up" ></span>{{pbi.upvotes}}</button>
                         </div>
                         <div class="name">
                             <a href="#">{{pbi.name}}</a>
@@ -37,3 +37,9 @@
         </div>
     </div><!-- /.widget-main -->
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#sortable").sortable();
+    });
+</script>

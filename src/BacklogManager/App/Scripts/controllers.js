@@ -3,6 +3,10 @@
 backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", function ($scope, BacklogItem) {
     $scope.productBacklogItems = BacklogItem.query();
     $scope.orderProp = "-id";
+
+    $scope.upvote = function () {
+        alert("to do!");
+    }
 }]);
 
 backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location", "Twitter", function ($rootScope, $scope, $location, Twitter) {
