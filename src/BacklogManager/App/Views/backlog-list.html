@@ -45,7 +45,6 @@
     $(document).ready(function () {
         $("#sortable").sortable({
             stop: function (event, ui) {
-                debugger;
                 var item = $($(ui.item).find(".backlog-item"));
                 alert("to do: re arrange ranking, post?  [" + item.attr("id") + "]");
             }
