@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201503152148466_Initial.Designer.cs">
       <DependentUpon>201503152148466_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503152158167_Adding rank fields to PBI.cs" />
+    <Compile Include="Migrations\201503152158167_Adding rank fields to PBI.Designer.cs">
+      <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +168,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201503152148466_Initial.resx">
       <DependentUpon>201503152148466_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503152158167_Adding rank fields to PBI.resx">
+      <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
