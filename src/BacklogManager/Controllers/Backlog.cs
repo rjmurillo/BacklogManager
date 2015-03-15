@@ -49,6 +49,8 @@ namespace BacklogManager.Controllers
                 current.Discipline = backlogItem.Discipline;
                 current.Goal = backlogItem.Goal;
                 current.Upvotes = backlogItem.Upvotes;
+                current.GlobalRank = backlogItem.GlobalRank;
+                current.TeamRank = backlogItem.TeamRank;
                 _db.SaveChanges();
             }
         }
