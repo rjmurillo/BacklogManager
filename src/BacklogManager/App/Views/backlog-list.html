@@ -2,13 +2,15 @@
     <div class="row">
         <div class="col-md-2">
             <!--Sidebar content-->
-            Search: <input ng-model="query">
-            Sort by:
-            <select ng-model="orderProp">
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-            </select>
+            <div class="input-group">
+                <input ng-model="query" placeholder="Search" type="text" class="form-control">
 
+                <select ng-model="orderProp">
+                    <option value="title">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+
+            </div>
         </div>
         <div class="col-md-10">
             <ul>

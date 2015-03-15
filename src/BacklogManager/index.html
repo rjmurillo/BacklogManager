@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
 <body role="document">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="Navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed"
@@ -21,8 +21,21 @@
                 <a class="navbar-brand" href="#/Home">Backlog App</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
-                <ul class="nav navbar-nav navbar-right"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" ng-click="signIn()" ng-show="!authenticated" id="TwitterSignInButton">Sign in</a>
+                    </li>
+                    <li>
+                        <span class="navbar-text" id="TwitterSignInName" ng-show="authenticated" ng-model="user">{{user.name}}</span>
+                    </li>
+                    <li>
+                        <a href="#" ng-click="signOut()" ng-show="authenticated">Sign out</a>
+                    </li>
+                </ul>
+                <div class="alert alert-danger" ng-show="error">
+                    There was an error
+                </div>
+
             </div>
         </div>
     </div>

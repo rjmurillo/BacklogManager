@@ -159,6 +159,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App\Data\backlog.json" />
     <Content Include="App\Scripts\app.js" />
     <Content Include="App\Scripts\controllers.js" />
     <Content Include="App\Scripts\OAuth.js" />
