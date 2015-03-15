@@ -2,7 +2,7 @@
 
 backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", function ($scope, BacklogItem) {
     $scope.productBacklogItems = BacklogItem.query();
-    $scope.orderProp = "-id";
+    $scope.orderProp = "globalRank";
 
     $scope.upvote = function () {
         alert("to do!");

@@ -7,13 +7,15 @@
                 <select ng-model="orderProp">
                     <option value="title">Alphabetical</option>
                     <option value="-id">Newest</option>
+                    <option value="globalRank">Stack Rank</option>
+                    <option value="-upvotes">Votes</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="widget-main no-padding">
         <div class="dialogs ace-scroll" id="sortable">
-            <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:'-upvotes'">
+            <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:orderProp">
                 <div class="itemdiv dialogdiv">
                     <div class="user">
                         <img alt="{{pbi.owner.name}} Avatar" src="{{pbi.owner.avatar}}">
