@@ -1,7 +1,13 @@
-﻿var backlogApp = angular.module("backlogApp", []);
+﻿var backlogControllers = angular.module("backlogControllers", []);
 
-backlogApp.controller("BacklogListCtrl", function ($scope) {
-    $scope.PBIs = [
-        { "title": "My first PBI" }
+backlogControllers.controller("BacklogListCtrl", ["$scope", "$http", function ($scope, $http) {
+    $scope.productBacklogItems = [
+        { "title": "My first PBI" },
+        { "title": "My second PBI" },
+        { "title": "My third PBI" },
+        { "title": "My fourth PBI" },
+        { "title": "My fifth PBI" },
     ];
-});
+
+    $scope.orderProp = "age";
+}]);
