@@ -21,6 +21,8 @@ namespace BacklogManager.Models
         public string Discipline { get; set; }
         public string Action { get; set; }
         public string Goal { get; set; }
+        public int TeamRank { get; set; }
+        public int GlobalRank { get; set; }
     }
 
     public class User

@@ -1,20 +1,20 @@
+using System.Data.Entity.Migrations;
+using System.Linq;
+using BacklogManager.DAL;
 using BacklogManager.Models;
 
 namespace BacklogManager.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BacklogManager.DAL.BacklogDbContext>
+
+    internal sealed class Configuration : DbMigrationsConfiguration<BacklogDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(BacklogManager.DAL.BacklogDbContext context)
+        protected override void Seed(BacklogDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -24,7 +24,7 @@ namespace BacklogManager.Migrations
 
             var users = new[]
             {
-                new User(){ID = 1, Username = "oodarichard", Name = "Richard Murillo", Avatar = "https://pbs.twimg.com/profile_images/573785723758854144/9f2yuFnf_200x200.jpeg"},
+                new User {ID = 1, Username = "oodarichard", Name = "Richard Murillo", Avatar = "https://pbs.twimg.com/profile_images/573785723758854144/9f2yuFnf_200x200.jpeg"},
                 new User{ID=2, Username = "smnkhn", Name = "Salman Khan", Avatar = "https://pbs.twimg.com/profile_images/571335588016447488/J1d4tDS__200x200.jpeg"},
                 new User{ID=3, Username = "CollWilliams", Name = "Colleen Williams", Avatar = "https://pbs.twimg.com/profile_images/439858746936659968/5pVxClm9_200x200.png"},
                 new User{ID=4, Username = "mgradwohl", Name = "Matt Gradwohl", Avatar = "https://pbs.twimg.com/profile_images/1865267615/Xbox_Ring_200x200.jpg"},
@@ -56,6 +56,18 @@ namespace BacklogManager.Migrations
                 new BacklogItem {ID=19, Owner = users[3], Upvotes = 8, Discipline = "developer", Action = "see a breakdown of my time spent on tasks", Goal = "I can identify which tasks takes me longer"},
                 new BacklogItem {ID=20, Owner = users[4], Upvotes = 0, Discipline = "developer", Action = "count how many reduction bugs I can delegate", Goal = "I spend more time building features"}
             };
+
+            var group = items.GroupBy(k => k.Upvotes, e => e).OrderByDescending(k => k.Key);
+            int rank = 1;
+            foreach (var grouping in group)
+            {
+                var votes = grouping.Key;
+                foreach (var i in grouping)
+                {
+                    i.GlobalRank = rank;
+                    rank++;
+                }
+            }
 
             context.BacklogItems.AddRange(items);
         }
