@@ -23,8 +23,8 @@ body {
     position: relative;
 }
 
-.ace-scroll {
-    overflow: hidden;
+.backlog-item-scroll {
+    overflow: visible;
 }
 
 .scroll-content {

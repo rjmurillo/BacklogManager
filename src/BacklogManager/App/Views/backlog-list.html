@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="widget-main no-padding">
-        <div class="dialogs ace-scroll" id="sortable">
+        <div class="dialogs backlog-item-scroll" id="sortable">
             <div class="scroll-content" ng-repeat="pbi in productBacklogItems | filter:query | orderBy:orderProp">
-                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" upvotes="{{pbi.upvotes}}" user={{pbi.ownerid}}>
+                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}">
                     <div class="user">
                         <img alt="{{pbi.owner.name}} Avatar" src="{{pbi.owner.avatar}}">
                     </div>
@@ -47,7 +47,7 @@
             stop: function (event, ui) {
                 debugger;
                 var item = $($(ui.item).find(".backlog-item"));
-                alert("to do: re arrange ranking, post?  [" + item.attr("id") + ", " + item.attr("user") + ", " + item.attr("upvotes") + "]");
+                alert("to do: re arrange ranking, post?  [" + item.attr("id") + "]");
             }
         });
     });
