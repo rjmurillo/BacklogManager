@@ -124,6 +124,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.js" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.min.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.min.js" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.style.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.style.min.css" />
     <Content Include="App\Scripts\app.js" />
     <Content Include="App\Scripts\controllers.js" />
     <Content Include="App\Scripts\OAuth.js" />
@@ -155,6 +161,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include=".bin\bower.cmd" />
+    <Content Include=".bin\bower_components\ng-sortable\.bower.json" />
+    <Content Include=".bin\bower_components\ng-sortable\bower.json" />
+    <Content Include=".bin\bower_components\ng-sortable\LICENSE" />
+    <Content Include=".bin\bower_components\ng-sortable\README.md" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
