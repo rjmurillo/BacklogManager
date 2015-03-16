@@ -157,33 +157,33 @@ body {
         font-size: 13px;
     }
 
-    .navbar {
-        border: none;
-        border-radius: 0px;
-    }
+.navbar {
+    border: none;
+    border-radius: 0px;
+}
 
-    .itemdiv .body .date-created {
-        bottom: 4px;
-    }
+.itemdiv .body .date-created {
+    bottom: 4px;
+}
 
-    .itemdiv .date-created {
-        position: absolute;
-        right: 5px;
-        bottom: 10px;
-        font-size: smaller;
-        color: #ccc;
-    }
+.itemdiv .date-created {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    font-size: smaller;
+    color: #ccc;
+}
 
-    .itemdiv.dialogdiv > .user > img {
-        border-color: #C9D6E5;
-    }
+.itemdiv.dialogdiv > .user > img {
+    border-color: #C9D6E5;
+}
 
-    .itemdiv > .user > img, .itemdiv > .user > .img {
-        border-radius: 100%;
-        border: 2px solid #5293C4;
-        max-width: 40px;
-        position: relative;
-    }
+.itemdiv > .user > img, .itemdiv > .user > .img {
+    border-radius: 100%;
+    border: 2px solid #5293C4;
+    max-width: 40px;
+    position: relative;
+}
 
 .navbar {
     background-color: #23b7e5;
@@ -191,9 +191,9 @@ body {
     color: #fff;
 }
 
-.navbar .navbar-brand, .navbar .navbar-nav > li > a, .navbar-inverse .navbar-text  {
-    color: #fff;
-}
+    .navbar .navbar-brand, .navbar .navbar-nav > li > a, .navbar-inverse .navbar-text {
+        color: #fff;
+    }
 
 .nav.navbar-nav.navbar-right {
     margin-right: 0px;
@@ -297,13 +297,13 @@ span.discipline, span.action, span.goal {
 .search input {
     margin-right: 2px;
     width: 48% !important;
-    height: 28px!important;
+    height: 28px !important;
     padding-top: 2px;
     padding-bottom: 2px;
-    border-radius: 4px!important;
+    border-radius: 4px !important;
     font-size: 13px;
     line-height: 1.3;
-    color: #666!important;
+    color: #666 !important;
     z-index: 11;
     -webkit-transition: width ease .15s;
     -o-transition: width ease .15s;
@@ -349,4 +349,12 @@ select {
 }
 
 .as-sortable-hidden {
+}
+
+.new-backlog-item-fields input {
+    padding: 5px 5px 1px 5px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+    font-weight: bold;
 }
