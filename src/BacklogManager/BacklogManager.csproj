@@ -144,7 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Backlog.cs" />
+    <Compile Include="Controllers\BacklogController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BacklogDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -160,6 +161,10 @@
     <Compile Include="Migrations\201503160057138_Added CreatedDate to model.cs" />
     <Compile Include="Migrations\201503160057138_Added CreatedDate to model.Designer.cs">
       <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503160224496_SocialId.cs" />
+    <Compile Include="Migrations\201503160224496_SocialId.Designer.cs">
+      <DependentUpon>201503160224496_SocialId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppModels.cs" />
@@ -193,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503160057138_Added CreatedDate to model.resx">
       <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503160224496_SocialId.resx">
+      <DependentUpon>201503160224496_SocialId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
