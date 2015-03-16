@@ -11,6 +11,7 @@ namespace BacklogManager
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BacklogDbContext, Configuration>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
