@@ -16,27 +16,7 @@
     <div class="widget-main no-padding">
         <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">
             <div class="scroll-content" data-ng-repeat="pbi in productBacklogItems | filter:query | orderBy:orderProp">
-                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" data-ui-sortable-item>
-                    <!--<div data-ui-sortable-item-handle>-->
-                        <div class="user">
-                            <img alt="{{pbi.owner.name}} Avatar" data-ng-src="{{pbi.owner.avatar}}" data-no-drag>
-                        </div>
-                        <div class="body color-{{pbi.id % 19}}">
-                            <div class="time">
-                                <button ng-click="upvote(pbi)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span>{{pbi.upvotes}}</button>
-                            </div>
-                            <div class="name">
-                                <a href="#">{{pbi.owner.name}}</a>
-                            </div>
-                            <div class="text">
-                                As a <span class="discipline">{{pbi.discipline}}</span>, I can <span class="action">{{pbi.action}}</span>, so that <span class="goal">{{pbi.goal}}</span>.
-                            </div>
-
-                            <div class="date-created">
-                                <span>{{pbi.createdDate | date:"MM/dd/yyyy"}}</span>
-                            </div>
-                        </div>
-                    <!--</div>-->
+                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" data-ui-sortable-item data-ng-include="'/App/Views/Partials/card.html'">
                 </div>
             </div>
         </div>
