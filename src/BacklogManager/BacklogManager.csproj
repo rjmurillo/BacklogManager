@@ -144,26 +144,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BacklogController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BacklogDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503152148466_Initial.cs" />
-    <Compile Include="Migrations\201503152148466_Initial.Designer.cs">
-      <DependentUpon>201503152148466_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503152158167_Adding rank fields to PBI.cs" />
-    <Compile Include="Migrations\201503152158167_Adding rank fields to PBI.Designer.cs">
-      <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503160057138_Added CreatedDate to model.cs" />
-    <Compile Include="Migrations\201503160057138_Added CreatedDate to model.Designer.cs">
-      <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503160224496_SocialId.cs" />
-    <Compile Include="Migrations\201503160224496_SocialId.Designer.cs">
-      <DependentUpon>201503160224496_SocialId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppModels.cs" />
@@ -187,20 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503152148466_Initial.resx">
-      <DependentUpon>201503152148466_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503152158167_Adding rank fields to PBI.resx">
-      <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503160057138_Added CreatedDate to model.resx">
-      <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503160224496_SocialId.resx">
-      <DependentUpon>201503160224496_SocialId.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

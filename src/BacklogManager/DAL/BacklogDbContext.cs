@@ -12,6 +12,8 @@ namespace BacklogManager.DAL
         public DbSet<BacklogItem> BacklogItems { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Project> Projects { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

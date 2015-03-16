@@ -39,6 +39,7 @@ namespace BacklogManager.Controllers
             backlogItem.GlobalRank = _db.BacklogItems.Max(s => s.GlobalRank) + 1;
             backlogItem.CreatedDate = DateTimeOffset.UtcNow;
             backlogItem.Owner = _db.Users.Find(backlogItem.OwnerId);
+            backlogItem.Project = _db.Projects.Find(backlogItem.ProjectId);
             _db.BacklogItems.Add(backlogItem);
             _db.SaveChanges();
         }
@@ -55,6 +56,11 @@ namespace BacklogManager.Controllers
                     current.Discipline = backlogItem.Discipline;
                     current.Goal = backlogItem.Goal;
                     current.Upvotes = backlogItem.Upvotes;
+
+                    if (current.ProjectId != backlogItem.ProjectId)
+                    {
+                        current.Project = _db.Projects.Find(backlogItem.ProjectId);
+                    }
 
                     if (current.GlobalRank != backlogItem.GlobalRank)
                     {
@@ -83,6 +89,10 @@ namespace BacklogManager.Controllers
 
 
                     _db.SaveChanges();
+                }
+                else
+                {
+                    Post(backlogItem);
                 }
             }
         }

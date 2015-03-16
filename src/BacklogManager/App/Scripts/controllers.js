@@ -49,8 +49,9 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogIt
         modal.result
             .then(function (details) {
                 if (details) {
-                    details.$save();
-                    $scope.populate();
+                    details.$save(function () {
+                        $scope.populate();
+                    });
                 }
             });
     };
@@ -58,24 +59,32 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogIt
     $scope.populate();
 }]);
 
-backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogItem", "UserService", "Twitter", function ($scope, $modalInstance, BackLogItem, UserService, Twitter) {
+backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogItem", "ProjectService", "Twitter", function ($scope, $modalInstance, BackLogItem, ProjectService, Twitter) {
     function init(scope) {
         scope.discipline = "";
         scope.action = "";
         scope.goal = "";
         scope.owner = Twitter.getAuthenticatedUser();
+        scope.projects = [];
+        scope.selectedProject = null;
+
+        var projects = ProjectService.query(function () {
+            scope.projects = projects;
+            scope.selectedProject = projects[0];
+        });
     }
 
     $scope.addNewStory = function () {
         // TODO: Ensure form is valid before dismissing!
-        //if (!this.NewStoryForm.$valid) {
-        //    return false;
-        //}
+
         var story = new BackLogItem();
         story.discipline = $scope.discipline;
         story.action = $scope.action;
         story.goal = $scope.goal;
         story.ownerId = $scope.owner.id;
+        story.owner = $scope.owner;
+        story.projectId = $scope.selectedProject.id;
+        story.project = $scope.selectedProject;
 
         $modalInstance.close(story);
     };
@@ -83,6 +92,10 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
     $scope.close = function () {
         $modalInstance.close();
     }
+
+    $scope.applyProject = function (project) {
+        $scope.selectedProject = project;
+    };
 
     init($scope);
 }]);

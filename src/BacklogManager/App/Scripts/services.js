@@ -23,6 +23,14 @@ backlogServices.factory("UserService", ["$resource", function ($resource) {
         });
 }]);
 
+backlogServices.factory("ProjectService", ["$resource", function ($resource) {
+    return $resource(
+        "/api/project/:projectId",
+        { projectId: "@id" },
+        { update: { method: "PUT" } }
+    );
+}]);
+
 backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $log, UserService) {
     window.authorizationResult = false;
     var user = "Guest";

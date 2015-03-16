@@ -2,7 +2,7 @@
 <div class="user">
     <img alt="{{pbi.owner.name}} Avatar" data-ng-src="{{pbi.owner.avatar}}" data-no-drag>
 </div>
-<div class="body color-{{pbi.id % 19}}">
+<div class="body" style="border-right:5px solid {{pbi.project.color}}">
     <div class="time">
         <div ng-click="upvote(pbi)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span>{{pbi.upvotes}}</div>
     </div>
