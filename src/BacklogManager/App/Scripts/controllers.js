@@ -63,22 +63,7 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
         scope.discipline = "";
         scope.action = "";
         scope.goal = "";
-        scope.ownerId = 0;
-
-        if (Twitter.isReady()) {
-            Twitter.isReady().me().done(function (response) {
-                var u = new UserService();
-                u.username = response.alias;
-                u.name = response.name;
-                u.avatar = response.avatar;
-                u.socialId = response.id;
-                u.$update();
-
-                var ourItem = UserService.get({ id: response.id });
-
-                scope.ownerId = ourItem.userId;
-            });
-        }
+        scope.owner = Twitter.getAuthenticatedUser();
     }
 
     $scope.addNewStory = function () {
@@ -90,7 +75,7 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
         story.discipline = $scope.discipline;
         story.action = $scope.action;
         story.goal = $scope.goal;
-        story.ownerId = $scope.ownerId;
+        story.ownerId = $scope.owner.id;
 
         $modalInstance.close(story);
     };
@@ -111,7 +96,7 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
     };
 
     var authenticate = function () {
-        Twitter.connectTwitter()
+        Twitter.authenticate()
                .then(function () {
                    if (Twitter.isReady()) {
                        $rootScope.authenticated = true;

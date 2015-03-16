@@ -23,9 +23,9 @@ backlogServices.factory("UserService", ["$resource", function ($resource) {
         });
 }]);
 
-backlogServices.factory("Twitter", ["$q", function ($q) {
+backlogServices.factory("Twitter", ["$q", "UserService", function ($q, UserService) {
     var authorizationResult = false;
-    var userName = "";
+    var user = "Guest";
 
     return {
         initialize: function () {
@@ -37,21 +37,32 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
         isReady: function () {
             return authorizationResult;
         },
-        authenticatedUserName: function () {
-            return userName;
+        getAuthenticatedUser: function () {
+            return user;
         },
-        connectTwitter: function () {
+        authenticate: function () {
             var deferred = $q.defer();
             OAuth.popup("twitter", { cache: true })
                  //.then(function (result) {
                      //User.signin(result);
                  //})
                  .done(function (result) {
-
                      authorizationResult = result;
                      result.me()
                            .done(function (response) {
-                               userName = response.name;
+                               // REVIEW: This is unreliable
+                               var u = new UserService();
+                               u.username = response.alias;
+                               u.name = response.name;
+                               u.avatar = response.avatar;
+                               u.socialId = response.id;
+                               u.$update(function() {
+                                   var u1 = UserService.get({ id: response.id }, function() {
+                                       
+                                   });
+                               });
+
+                                
                            });
 
                      deferred.resolve();
@@ -62,7 +73,7 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
         clearCache: function () {
             OAuth.clearCache("twitter");
             authorizationResult = false;
-            userName = "";
+            user = "Guest";
         }
     }
 }]);
