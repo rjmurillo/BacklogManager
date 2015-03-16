@@ -19,7 +19,7 @@ angular
         $httpProvider.responseInterceptors.push(function ($timeout, $q) {
             return function (promise) {
                 return promise.then(function (successResponse) {
-                    if (successResponse.config.method.toUpperCase() != "GET")
+                    if (successResponse.config.method.toUpperCase() !== "GET")
                         showMessage("Success", "successMessage", 5000);
                     return successResponse;
 

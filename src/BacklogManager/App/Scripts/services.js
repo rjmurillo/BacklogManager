@@ -31,7 +31,7 @@ backlogServices.factory("ProjectService", ["$resource", function ($resource) {
     );
 }]);
 
-backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $log, UserService) {
+backlogServices.factory("Twitter", ["$q", "$log", "$rootScope", "UserService", function ($q, $log, $rootScope, UserService) {
     window.authorizationResult = false;
     var user = "Guest";
 
@@ -40,7 +40,13 @@ backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $
             // Initialize OAuth.io with public key
             OAuth.initialize("mXmUMUFVm37zUdMeXpgWancUJJ8", { cache: true });
             // Try to create an authorization result when called
-            //window.authorizationResult = OAuth.create("twitter");
+            window.authorizationResult = OAuth.create("twitter");
+
+            if (!window.authorizationResult) {
+                $log.log("User has not authorized application");
+            } else {
+                $log.log("User has previously authorized this application and credentials are cached");
+            }
         },
         isReady: function () {
             return (window.authorizationResult);
@@ -52,7 +58,10 @@ backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $
             var deferred = $q.defer();
             OAuth.popup("twitter", { cache: true }, function (error, result) {
                 if (!error) {
-                    $log.log("Twitter successful auth");
+                    $log.log("Twitter successful auth: " + result.oauth_token);
+                    $rootScope.$broadcast("oauth:token", result.oauth_token);
+                    $rootScope.$broadcast("oauth:token:secret", result.oauth_token_secret);
+
                     window.authorizationResult = result;
 
                     if (user === "Guest") {
@@ -67,6 +76,7 @@ backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $
                                 u.$update(function () {
                                     var u1 = UserService.get({ id: response.id }, function () {
                                         user = u1;
+                                        $rootScope.$broadcast("oauth:profile", user);
                                         deferred.resolve();
                                     });
                                 });

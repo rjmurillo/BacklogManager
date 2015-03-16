@@ -107,21 +107,26 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
         Twitter.authenticate()
                .then(function () {
                    if (Twitter.isReady()) {
-                       $rootScope.authenticated = true;
-                       $rootScope.authenticatedUser = Twitter.getAuthenticatedUser();
-                       $scope.$storage = $localStorage.$default({
-                           authenticatedUser: Twitter.getAuthenticatedUser()
-                       });
                    } else {
                        $scope.error = true;
                    }
                });
     };
 
+    $rootScope.$on("oauth:profile", function (event, data) {
+        if (data) {
+            $rootScope.authenticated = true;
+            $rootScope.authenticatedUser = data;
+        }
+    });
 
 
-
-    //authenticate();
+    if (Twitter.isReady()) {
+        // User has already authorized the application
+        // and the credentials are stored in cache
+        // This will automatically sign the user into our application
+        authenticate();
+    }
 
 
     $scope.signIn = function () {
