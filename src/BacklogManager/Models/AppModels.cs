@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,7 +29,7 @@ namespace BacklogManager.Models
         public string Action { get; set; }
         [Required]
         public string Goal { get; set; }
-        public int TeamRank { get; set; }
+        public int ProjectRank { get; set; }
         [Required]
         public int GlobalRank { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
@@ -37,6 +38,8 @@ namespace BacklogManager.Models
         public int ProjectId { get; set; }
         [ForeignKey("ProjectId")]
         public virtual Project Project { get; set; }
+        [MaxLength(2083)]
+        public string WorkItemUrl { get; set; }
     }
 
     public class User
@@ -50,6 +53,7 @@ namespace BacklogManager.Models
         public string Avatar { get; set; }
         [Index(IsClustered = false)]
         public int SocialId { get; set; }
+        //public virtual List<BacklogItem> BacklogItems { get; set; }
     }
 
     public class Project
@@ -60,5 +64,7 @@ namespace BacklogManager.Models
         [Index(IsClustered = false, IsUnique = true)]
         [MaxLength(7)]
         public string Color { get; set; }
+
+        //public virtual List<BacklogItem> BacklogItems { get; set; }
     }
 }
