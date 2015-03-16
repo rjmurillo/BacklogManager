@@ -1,12 +1,11 @@
 <div class="widget-body">
     <div class="row">
-        <button class="btn  btn-info pull-left add-new-story" title="Add new story" ng-click="addNewStory()">
+        <button class="btn btn-info pull-left add-new-story" title="Add new story" data-ng-click="addNewStory()" data-ng-show="authenticated">
             <i class="glyphicon glyphicon-plus"></i><span> Create</span>
         </button>
-        <div class="col-md-2 pull-right">
-            <!--Sidebar content-->
+        <div class="col-md-3 pull-right">
             <div class="input-group search">
-                <input ng-model="query" placeholder="Search" type="text" class="form-control">
+                <input ng-model="query" placeholder="Search backlog" type="text" class="form-control">
                 <select ng-model="orderProp">
                     <option value="title">Alphabetical</option>
                     <option value="-id">Newest</option>
@@ -17,12 +16,16 @@
         </div>
     </div>
 
-    <div class="widget-main no-padding">
-        <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">
-            <div class="scroll-content" data-ng-repeat="pbi in productBacklogItems | filter:query | orderBy:orderProp">
-                <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" data-ui-sortable-item data-ng-include="'/App/Views/Partials/card.html'">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget-main no-padding">
+                <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">
+                    <div class="scroll-content" data-ng-repeat="pbi in filteredResults = (productBacklogItems | filter:query | orderBy:orderProp)">
+                        <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" data-ui-sortable-item data-ng-include="'/App/Views/Partials/card.html'">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div><!-- /.widget-main -->
+    </div>
 </div>

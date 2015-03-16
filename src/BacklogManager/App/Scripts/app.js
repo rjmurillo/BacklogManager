@@ -66,7 +66,7 @@ angular
         });
     });
 
-var backlogApp = angular.module("backlogApp", ["ngRoute", "ui.sortable", "ui.bootstrap", "backlogControllers", "backlogServices"]);
+var backlogApp = angular.module("backlogApp", ["ngRoute", "ui.sortable", "ui.bootstrap", "ngStorage", /*"oauth.io",*/ "backlogControllers", "backlogServices"]);
 
 backlogApp.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
@@ -76,5 +76,7 @@ backlogApp.config(["$routeProvider", function ($routeProvider) {
         }).otherwise({
             redirectTo: "/backlog"
         });
+
+    //OAuthProvider.setPublicKey("mXmUMUFVm37zUdMeXpgWancUJJ8");
 }]);
 

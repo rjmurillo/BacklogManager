@@ -23,8 +23,8 @@ backlogServices.factory("UserService", ["$resource", function ($resource) {
         });
 }]);
 
-backlogServices.factory("Twitter", ["$q", "UserService", function ($q, UserService) {
-    var authorizationResult = false;
+backlogServices.factory("Twitter", ["$q", "$log", "UserService", function ($q, $log, UserService) {
+    window.authorizationResult = false;
     var user = "Guest";
 
     return {
@@ -32,47 +32,51 @@ backlogServices.factory("Twitter", ["$q", "UserService", function ($q, UserServi
             // Initialize OAuth.io with public key
             OAuth.initialize("mXmUMUFVm37zUdMeXpgWancUJJ8", { cache: true });
             // Try to create an authorization result when called
-            authorizationResult = OAuth.create("twitter");
+            //window.authorizationResult = OAuth.create("twitter");
         },
         isReady: function () {
-            return authorizationResult;
+            return (window.authorizationResult);
         },
         getAuthenticatedUser: function () {
             return user;
         },
         authenticate: function () {
             var deferred = $q.defer();
-            OAuth.popup("twitter", { cache: true })
-                 //.then(function (result) {
-                     //User.signin(result);
-                 //})
-                 .done(function (result) {
-                     authorizationResult = result;
-                     result.me()
-                           .done(function (response) {
-                               // REVIEW: This is unreliable
-                               var u = new UserService();
-                               u.username = response.alias;
-                               u.name = response.name;
-                               u.avatar = response.avatar;
-                               u.socialId = response.id;
-                               u.$update(function() {
-                                   var u1 = UserService.get({ id: response.id }, function() {
-                                       
-                                   });
-                               });
+            OAuth.popup("twitter", { cache: true }, function (error, result) {
+                if (!error) {
+                    $log.log("Twitter successful auth");
+                    window.authorizationResult = result;
 
-                                
-                           });
+                    if (user === "Guest") {
+                        result.me()
+                            .done(function (response) {
+                                // REVIEW: This is unreliable
+                                var u = new UserService();
+                                u.username = response.alias;
+                                u.name = response.name;
+                                u.avatar = response.avatar;
+                                u.socialId = response.id;
+                                u.$update(function () {
+                                    var u1 = UserService.get({ id: response.id }, function () {
+                                        user = u1;
+                                        deferred.resolve();
+                                    });
+                                });
 
-                     deferred.resolve();
 
-                 });
+                            });
+                    } else {
+                        $log.log("Authenticated user already set");
+                    }
+                } else {
+                    $log.error(error);
+                }
+            });
             return deferred.promise;
         },
         clearCache: function () {
             OAuth.clearCache("twitter");
-            authorizationResult = false;
+            window.authorizationResult = false;
             user = "Guest";
         }
     }

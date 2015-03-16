@@ -7,7 +7,10 @@
         <div ng-click="upvote(pbi)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-up"></span>{{pbi.upvotes}}</div>
     </div>
     <div class="name">
-        <p>{{pbi.owner.name}}</p>
+        <span class="user-name">
+            <a class="user-name user-profile-link" title="{{pbi.owner.name}} (@{{pbi.owner.username}})">{{pbi.owner.name}}</a>
+            <span class="user-screen-name">@{{pbi.owner.username}}</span>
+        </span>
     </div>
     <div class="text">
         As a <span class="discipline">{{pbi.discipline}}</span>, I can <span class="action">{{pbi.action}}</span>, so that <span class="goal">{{pbi.goal}}</span>.

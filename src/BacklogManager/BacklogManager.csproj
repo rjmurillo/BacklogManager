@@ -132,7 +132,6 @@
     <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.style.min.css" />
     <Content Include="App\Scripts\app.js" />
     <Content Include="App\Scripts\controllers.js" />
-    <Content Include="App\Scripts\OAuth.js" />
     <Content Include="App\Scripts\services.js" />
     <Content Include="App\Styles\styles.css" />
     <Content Include="App\Views\backlog-list.html" />

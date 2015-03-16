@@ -41,128 +41,129 @@ body {
     min-height: 66px;
     position: relative;
 }
+
 .modal-footer, .modal-header {
     border: none !important;
 }
 
-    .itemdiv.dialogdiv:before {
-        position: absolute;
-        display: block;
-        content: "";
-        top: 0;
-        bottom: 0;
-        left: 19px;
-        width: 3px;
-        max-width: 3px;
-        background-color: #E1E6ED;
-        border: 1px solid #D7DBDD;
-        border-width: 0 1px;
-    }
+.itemdiv.dialogdiv:before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 19px;
+    width: 3px;
+    max-width: 3px;
+    background-color: #E1E6ED;
+    border: 1px solid #D7DBDD;
+    border-width: 0 1px;
+}
 
-    .new-backlog-item-fields.itemdiv.dialogdiv:before {
-        display: none;
-    }
+.new-backlog-item-fields.itemdiv.dialogdiv:before {
+    display: none;
+}
 
-    .itemdiv > .user {
-        display: inline-block;
-        width: 42px;
-        position: absolute;
-        left: 0;
-    }
+.itemdiv > .user {
+    display: inline-block;
+    width: 42px;
+    position: absolute;
+    left: 0;
+}
 
-    .itemdiv.dialogdiv > .body {
-        border-top: 1px solid #DDE4ED;
-        border-bottom: 1px solid #DDE4ED;
-        border-left: 1px solid #DDE4ED;
-        padding: 5px 8px 8px;
-        border-left-width: 2px;
-        margin-right: 1px;
-        border-radius: 5px;
-        background-color: #fff;
-    }
+.itemdiv.dialogdiv > .body {
+    border-top: 1px solid #DDE4ED;
+    border-bottom: 1px solid #DDE4ED;
+    border-left: 1px solid #DDE4ED;
+    padding: 5px 8px 8px;
+    border-left-width: 2px;
+    margin-right: 1px;
+    border-radius: 5px;
+    background-color: #fff;
+}
 
-    .itemdiv > .body {
-        width: auto;
-        margin-left: 50px;
-        margin-right: 12px;
-        position: relative;
-    }
+.itemdiv > .body {
+    width: auto;
+    margin-left: 50px;
+    margin-right: 12px;
+    position: relative;
+}
 
-    .itemdiv.dialogdiv > .body:before {
-        content: "";
-        display: block;
-        position: absolute;
-        left: -7px;
-        top: 11px;
-        width: 8px;
-        height: 8px;
-        border: 2px solid #DDE4ED;
-        border-width: 2px 0 0 2px;
-        background-color: #FFF;
-        -webkit-box-sizing: content-box;
-        -moz-box-sizing: content-box;
-        box-sizing: content-box;
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
+.itemdiv.dialogdiv > .body:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -7px;
+    top: 11px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #DDE4ED;
+    border-width: 2px 0 0 2px;
+    background-color: #FFF;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
 
-    .itemdiv.dialogdiv > .body > .time {
-        position: static;
-        float: right;
-    }
+.itemdiv.dialogdiv > .body > .time {
+    position: static;
+    float: right;
+}
 
-    .itemdiv > .body > .time {
-        display: block;
-        font-size: 11px;
-        font-weight: 700;
-        color: #666;
-        position: absolute;
-        right: 9px;
-        top: 0;
-    }
+.itemdiv > .body > .time {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #666;
+    position: absolute;
+    right: 9px;
+    top: 0;
+}
 
-    .itemdiv > .body > .name {
-        display: block;
-        color: #999;
-    }
+.itemdiv > .body > .name {
+    display: block;
+    color: #999;
+}
 
-    .itemdiv > .body > .name {
-        display: block;
-        color: #999;
-    }
+.itemdiv > .body > .name {
+    display: block;
+    color: #999;
+}
 
-    .itemdiv > .body > .text:after {
-        display: block;
-        content: "";
-        height: 1px;
-        font-size: 0;
-        overflow: hidden;
-        position: absolute;
-        left: 16px;
-        right: -12px;
-        margin-top: 9px;
-        border-top: 1px solid #E4ECF3;
-    }
+.itemdiv > .body > .text:after {
+    display: block;
+    content: "";
+    height: 1px;
+    font-size: 0;
+    overflow: hidden;
+    position: absolute;
+    left: 16px;
+    right: -12px;
+    margin-top: 9px;
+    border-top: 1px solid #E4ECF3;
+}
 
-    .itemdiv.dialogdiv > .body > .text:after {
-        display: none;
-    }
+.itemdiv.dialogdiv > .body > .text:after {
+    display: none;
+}
 
-    .itemdiv.dialogdiv > .body > .text {
-        padding-left: 0;
-        padding-bottom: 0;
-    }
+.itemdiv.dialogdiv > .body > .text {
+    padding-left: 0;
+    padding-bottom: 0;
+}
 
-    .itemdiv > .body > .text {
-        display: block;
-        position: relative;
-        margin-top: 2px;
-        padding-bottom: 19px;
-        padding-left: 7px;
-        font-size: 13px;
-    }
+.itemdiv > .body > .text {
+    display: block;
+    position: relative;
+    margin-top: 2px;
+    padding-bottom: 19px;
+    padding-left: 7px;
+    font-size: 13px;
+}
 
 .navbar {
     border: none;
@@ -202,14 +203,18 @@ body {
         color: #fff;
     }
 
+    .navbar .navbar-brand {
+        font-weight: bold;
+    }
+
 .nav.navbar-nav.navbar-right {
     margin-right: 0px;
 }
 
 .nav-user-photo {
     float: left;
-    width: 25px;
-    height: 25px;
+     width: 42px; 
+     height: 42px; 
     border-radius: 100%;
     border: 1px solid #FFF;
     max-width: 40px;
@@ -369,4 +374,21 @@ select {
     border-bottom: solid 2px #c9c9c9;
     transition: border 0.3s;
     font-weight: bold;
+}
+
+.user-name {
+    font-size: 14px;
+    position: relative;
+    color: #292f33;
+    line-height: 18px;
+}
+
+a.user-name {
+    font-weight: bold;
+    color: #292f33;
+}
+
+.user-screen-name {
+    color: #8899a6;
+    font-size: 12px;
 }
