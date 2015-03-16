@@ -38,6 +38,7 @@ namespace BacklogManager.Controllers
         {
             backlogItem.GlobalRank = _db.BacklogItems.Max(s => s.GlobalRank) + 1;
             backlogItem.CreatedDate = DateTimeOffset.UtcNow;
+            backlogItem.Owner = _db.Users.Find(backlogItem.OwnerId);
             _db.BacklogItems.Add(backlogItem);
             _db.SaveChanges();
         }
