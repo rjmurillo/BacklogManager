@@ -44,20 +44,35 @@ namespace BacklogManager.Controllers
                     existing.Name = user.Name;
                     existing.Username = user.Username;
                     _db.SaveChanges();
+                    return;
                 }
-                else
+
+                if (user.ID != 0)
                 {
-                    // New
-                    existing = new User
+                    existing = _db.Users.FirstOrDefault(p => p.ID == user.ID);
+
+                    if (existing != null)
                     {
-                        Avatar = user.Avatar,
-                        Name = user.Name,
-                        Username = user.Username,
-                        SocialId = user.SocialId
-                    };
-                    _db.Users.Add(existing);
-                    _db.SaveChanges();
+                        // Update
+                        existing.Avatar = user.Avatar;
+                        existing.Name = user.Name;
+                        existing.Username = user.Username;
+                        existing.SocialId = user.SocialId;
+                        _db.SaveChanges();
+                        return;
+                    }
                 }
+
+                // New
+                existing = new User
+                {
+                    Avatar = user.Avatar,
+                    Name = user.Name,
+                    Username = user.Username,
+                    SocialId = user.SocialId
+                };
+                _db.Users.Add(existing);
+                _db.SaveChanges();
             }
         }
     }
