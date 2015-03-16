@@ -12,6 +12,17 @@ backlogServices.factory("BacklogItem", ["$resource", function ($resource) {
         );
 }]);
 
+backlogServices.factory("UserService", ["$resource", function ($resource) {
+    return $resource(
+        "/api/user/:userId",
+        { userId: "@id" },
+        {
+            update: {
+                method: "PUT"
+            }
+        });
+}]);
+
 backlogServices.factory("Twitter", ["$q", function ($q) {
     var authorizationResult = false;
     var userName = "";
@@ -32,7 +43,11 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
         connectTwitter: function () {
             var deferred = $q.defer();
             OAuth.popup("twitter", { cache: true })
+                 //.then(function (result) {
+                     //User.signin(result);
+                 //})
                  .done(function (result) {
+
                      authorizationResult = result;
                      result.me()
                            .done(function (response) {

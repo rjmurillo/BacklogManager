@@ -57,11 +57,23 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogIt
     $scope.populate();
 }]);
 
-backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogItem", function ($scope, $modalInstance, BackLogItem) {
+backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogItem", "UserService", "Twitter", function ($scope, $modalInstance, BackLogItem, UserService, Twitter) {
     function init(scope) {
         scope.discipline = "";
         scope.action = "";
         scope.goal = "";
+
+        if (Twitter.isReady()) {
+            Twitter.isReady().me().done(function(response) {
+                var u = new UserService();
+                u.username = response.alias;
+                u.name = response.name;
+                u.avatar = response.avatar;
+                u.socialId = response.id;
+                u.$update();
+            });
+        }
+
         scope.ownerId = 2;
     }
 
