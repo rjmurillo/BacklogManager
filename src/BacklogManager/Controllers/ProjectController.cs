@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using BacklogManager.DAL;
@@ -18,6 +19,8 @@ namespace BacklogManager.Controllers
         private ProjectController(BacklogDbContext db)
         {
             _db = db;
+            _db.Database.Log = Console.Write; 
+
         }
 
         // GET: api/project

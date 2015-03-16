@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +20,7 @@ namespace BacklogManager.Controllers
         public UserController(BacklogDbContext context)
         {
             _db = context;
+            _db.Database.Log = Console.Write; 
         }
 
         public IEnumerable<User> Get()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using BacklogManager.DAL;
@@ -19,12 +20,13 @@ namespace BacklogManager.Controllers
         public BacklogController(BacklogDbContext context)
         {
             _db = context;
+            _db.Database.Log = Console.Write; 
         }
 
         // GET: api/backlog
         public IEnumerable<BacklogItem> Get()
         {
-            return _db.BacklogItems.AsNoTracking();
+            return _db.BacklogItems;
         }
 
         // GET: api/backlog/5
