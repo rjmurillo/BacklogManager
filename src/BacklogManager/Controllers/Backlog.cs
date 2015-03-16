@@ -44,14 +44,17 @@ namespace BacklogManager.Controllers
         {
             if (backlogItem != null)
             {
-                var current = Get(backlogItem.ID);
-                current.Action = backlogItem.Action;
-                current.Discipline = backlogItem.Discipline;
-                current.Goal = backlogItem.Goal;
-                current.Upvotes = backlogItem.Upvotes;
-                current.GlobalRank = backlogItem.GlobalRank;
-                current.TeamRank = backlogItem.TeamRank;
-                _db.SaveChanges();
+                var current = _db.BacklogItems.FirstOrDefault(a => a.ID == backlogItem.ID);
+                if (current != null)
+                {
+                    current.Action = backlogItem.Action;
+                    current.Discipline = backlogItem.Discipline;
+                    current.Goal = backlogItem.Goal;
+                    current.Upvotes = backlogItem.Upvotes;
+                    current.GlobalRank = backlogItem.GlobalRank;
+                    current.TeamRank = backlogItem.TeamRank;
+                    _db.SaveChanges();
+                }
             }
         }
 

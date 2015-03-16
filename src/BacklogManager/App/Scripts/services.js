@@ -3,7 +3,12 @@
 backlogServices.factory("BacklogItem", ["$resource", function ($resource) {
     return $resource(
         "/api/backlog/:backlogId",
-        {backlogId:'@id'}
+        { backlogId: '@id' },
+        {
+            update: {
+                method: "PUT"
+            }
+        }
         );
 }]);
 
@@ -32,7 +37,7 @@ backlogServices.factory("Twitter", ["$q", function ($q) {
                      result.me()
                            .done(function (response) {
                                userName = response.name;
-                     });
+                           });
 
                      deferred.resolve();
 

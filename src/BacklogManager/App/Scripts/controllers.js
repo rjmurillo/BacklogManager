@@ -20,16 +20,17 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", funct
     $scope.upvote = function (item) {
         var item2 = BacklogItem.get({ id: item.id }, function () {
             item2.upvotes += 1;
-            item2.$save();
-            $scope.populate();
+            item2.$update(function () {
+                $scope.populate();
+            });
         });
     }
 
     $scope.dragControlListeners = {
-        itemMoved: function(event) {
+        itemMoved: function (event) {
             alert("moved");
         },
-        orderChanged: function(event) {
+        orderChanged: function (event) {
             alert("changed");
         },
         containment: '#sortable'
