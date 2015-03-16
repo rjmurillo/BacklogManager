@@ -41,7 +41,8 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogIt
             {
                 templateUrl: '/App/Views/Partials/card-new.html',
                 controller: 'NewStory',
-                backdrop: 'static'
+                backdrop: 'static',
+                size: 'lg'
             }
         );
 
