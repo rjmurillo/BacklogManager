@@ -136,6 +136,7 @@
     <Content Include="App\Scripts\services.js" />
     <Content Include="App\Styles\styles.css" />
     <Content Include="App\Views\backlog-list.html" />
+    <Content Include="App\Views\partials\card-new.html" />
     <Content Include="App\Views\partials\card.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />

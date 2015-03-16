@@ -13,6 +13,11 @@
             </div>
         </div>
     </div>
+
+    <a title="Add new story" ng-click="addNewStory()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </a>
+
     <div class="widget-main no-padding">
         <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">
             <div class="scroll-content" data-ng-repeat="pbi in productBacklogItems | filter:query | orderBy:orderProp">

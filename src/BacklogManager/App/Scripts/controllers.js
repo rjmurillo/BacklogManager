@@ -1,6 +1,6 @@
 ﻿var backlogControllers = angular.module("backlogControllers", []);
 
-backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", function ($scope, BacklogItem) {
+backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogItem", function ($scope, $modal, BacklogItem) {
 
     $scope.orderProp = "globalRank";
 
@@ -36,8 +36,56 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "BacklogItem", funct
         containment: '#sortable'
     };
 
+    $scope.addNewStory = function () {
+        var modal = $modal.open(
+            {
+                templateUrl: '/App/Views/Partials/card-new.html',
+                controller: 'NewStory',
+                backdrop: 'static'
+            }
+        );
+
+        modal.result
+            .then(function (details) {
+                if (details) {
+                    details.$save();
+                    $scope.populate();
+                }
+            });
+    };
+
     $scope.populate();
 }]);
+
+backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogItem", function ($scope, $modalInstance, BackLogItem) {
+    function init(scope) {
+        scope.discipline = "";
+        scope.action = "";
+        scope.goal = "";
+        scope.ownerId = 2;
+    }
+
+    $scope.addNewStory = function () {
+        // TODO: Ensure form is valid before dismissing!
+        //if (!this.NewStoryForm.$valid) {
+        //    return false;
+        //}
+        var story = new BackLogItem();
+        story.discipline = $scope.discipline;
+        story.action = $scope.action;
+        story.goal = $scope.goal;
+        story.ownerId = $scope.ownerId;
+
+        $modalInstance.close(story);
+    };
+
+    $scope.close = function () {
+        $modalInstance.close();
+    }
+
+    init($scope);
+}]);
+
 
 backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location", "Twitter", function ($rootScope, $scope, $location, Twitter) {
     Twitter.initialize();
