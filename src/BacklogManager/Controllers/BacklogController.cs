@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using BacklogManager.DAL;
@@ -36,6 +37,7 @@ namespace BacklogManager.Controllers
         public void Post(BacklogItem backlogItem)
         {
             backlogItem.GlobalRank = _db.BacklogItems.Max(s => s.GlobalRank) + 1;
+            backlogItem.CreatedDate = DateTimeOffset.UtcNow;
             _db.BacklogItems.Add(backlogItem);
             _db.SaveChanges();
         }
