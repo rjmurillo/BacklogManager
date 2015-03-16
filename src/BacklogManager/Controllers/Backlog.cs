@@ -29,12 +29,13 @@ namespace BacklogManager.Controllers
         // GET: api/backlog/5
         public BacklogItem Get(int id)
         {
-            return _db.BacklogItems.AsNoTracking().FirstOrDefault(a => a.ID == id);
+            return _db.BacklogItems.FirstOrDefault(a => a.ID == id);
         }
 
         // POST: api/backlog
         public void Post(BacklogItem backlogItem)
         {
+            backlogItem.GlobalRank = _db.BacklogItems.Max(s => s.GlobalRank) + 1;
             _db.BacklogItems.Add(backlogItem);
             _db.SaveChanges();
         }
@@ -44,15 +45,40 @@ namespace BacklogManager.Controllers
         {
             if (backlogItem != null)
             {
-                var current = _db.BacklogItems.FirstOrDefault(a => a.ID == backlogItem.ID);
+                var current = Get(backlogItem.ID);
                 if (current != null)
                 {
                     current.Action = backlogItem.Action;
                     current.Discipline = backlogItem.Discipline;
                     current.Goal = backlogItem.Goal;
                     current.Upvotes = backlogItem.Upvotes;
-                    current.GlobalRank = backlogItem.GlobalRank;
-                    current.TeamRank = backlogItem.TeamRank;
+
+                    if (current.GlobalRank != backlogItem.GlobalRank)
+                    {
+                        var arr = _db.BacklogItems.ToArray();
+                        var temp = arr[0];
+
+                        for (int write = 0; write < arr.Length; write++)
+                        {
+                            for (int sort = 0; sort < arr.Length - 1; sort++)
+                            {
+                                if (arr[sort].GlobalRank > arr[sort + 1].GlobalRank)
+                                {
+                                    temp = arr[sort + 1];
+                                    arr[sort + 1] = arr[sort];
+                                    arr[sort] = temp;
+                                }
+                            }
+                        }
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            arr[i].GlobalRank = i;
+                        }
+                    }
+
+
+
                     _db.SaveChanges();
                 }
             }
