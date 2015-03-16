@@ -64,7 +64,7 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
         scope.goal = "";
 
         if (Twitter.isReady()) {
-            Twitter.isReady().me().done(function(response) {
+            Twitter.isReady().me().done(function (response) {
                 var u = new UserService();
                 u.username = response.alias;
                 u.name = response.name;
@@ -102,11 +102,8 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
 backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location", "Twitter", function ($rootScope, $scope, $location, Twitter) {
     Twitter.initialize();
 
-    var setUserScope = function () {
-        if (User.isLogged()) {
-            var user = User.getIdentity();
-            $scope.authenticatedUser = user.data;
-        }
+    var setUserScope = function (data) {
+        $scope.authenticatedUser = data;
     };
 
     var authenticate = function () {
@@ -114,7 +111,9 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
                .then(function () {
                    if (Twitter.isReady()) {
                        $rootScope.authenticated = true;
-                       setUserScope();
+                       Twitter.isReady().me().done(function (response) {
+                           setUserScope(response);
+                       });
                    } else {
                        $scope.error = true;
                    }
@@ -127,19 +126,16 @@ backlogControllers.controller("Navigation", ["$rootScope", "$scope", "$location"
 
     if (User.isLogged()) {
         $rootScope.authenticated = true;
-        setUserScope();
     } else {
         authenticate();
-        setUserScope();
     }
 
     $scope.signIn = function () {
         authenticate();
-        setUserScope();
     }
 
     $scope.signOut = function () {
         Twitter.clearCache();
-        setUserScope();
+        $scope.authenticatedUser = null;
     }
 }]);

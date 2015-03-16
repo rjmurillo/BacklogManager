@@ -29,7 +29,7 @@
                         <a href="#" ng-click="signIn()" ng-show="!authenticated" id="TwitterSignInButton">Sign in</a>
                     </li>
                     <li>
-                        <span class="navbar-text" id="TwitterSignInName" ng-show="authenticated" ng-model="me">{{me.name}}</span>
+                        <span class="navbar-text" id="TwitterSignInName" ng-show="authenticated" ng-model="authenticatedUser">{{authenticatedUser.name}}</span>
                     </li>
                     <li>
                         <a href="#" ng-click="signOut()" ng-show="authenticated">Sign out</a>
