@@ -13,6 +13,7 @@ namespace BacklogManager.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(BacklogDbContext context)
@@ -25,7 +26,7 @@ namespace BacklogManager.Migrations
 
             var users = new[]
             {
-                new User {ID = 580668794, Username = "oodarichard", Name = "Richard Murillo", Avatar = "https://pbs.twimg.com/profile_images/573785723758854144/9f2yuFnf_200x200.jpeg"},
+                new User {ID = 1, Username = "oodarichard", Name = "Richard Murillo", Avatar = "https://pbs.twimg.com/profile_images/573785723758854144/9f2yuFnf_200x200.jpeg", SocialId = 580668794},
                 new User{ID=2, Username = "smnkhn", Name = "Salman Khan", Avatar = "https://pbs.twimg.com/profile_images/571335588016447488/J1d4tDS__200x200.jpeg"},
                 new User{ID=3, Username = "CollWilliams", Name = "Colleen Williams", Avatar = "https://pbs.twimg.com/profile_images/439858746936659968/5pVxClm9_200x200.png"},
                 new User{ID=4, Username = "mgradwohl", Name = "Matt Gradwohl", Avatar = "https://pbs.twimg.com/profile_images/1865267615/Xbox_Ring_200x200.jpg"},
