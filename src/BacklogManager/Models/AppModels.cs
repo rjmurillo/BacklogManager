@@ -30,9 +30,12 @@ namespace BacklogManager.Models
     {
         [Key]
         public int ID { get; set; }
+        [Index(IsClustered = false, IsUnique = false)]
+        [MaxLength(length: 15)]
         public string Username { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
+        [Index(IsClustered = false)]
         public int SocialId { get; set; }
     }
 }
