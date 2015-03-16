@@ -63,6 +63,7 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
         scope.discipline = "";
         scope.action = "";
         scope.goal = "";
+        scope.ownerId = 0;
 
         if (Twitter.isReady()) {
             Twitter.isReady().me().done(function (response) {
@@ -72,10 +73,12 @@ backlogControllers.controller("NewStory", ["$scope", "$modalInstance", "BacklogI
                 u.avatar = response.avatar;
                 u.socialId = response.id;
                 u.$update();
+
+                var ourItem = UserService.get({ id: response.id });
+
+                scope.ownerId = ourItem.userId;
             });
         }
-
-        scope.ownerId = 2;
     }
 
     $scope.addNewStory = function () {
