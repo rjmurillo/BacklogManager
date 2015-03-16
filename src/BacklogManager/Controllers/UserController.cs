@@ -63,6 +63,22 @@ namespace BacklogManager.Controllers
                     }
                 }
 
+                if (!string.IsNullOrEmpty(user.Username))
+                {
+                    existing = _db.Users.FirstOrDefault(p => p.Username == user.Username);
+
+                    if (existing != null)
+                    {
+                        // Update
+                        existing.Avatar = user.Avatar;
+                        existing.Name = user.Name;
+                        existing.Username = user.Username;
+                        existing.SocialId = user.SocialId;
+                        _db.SaveChanges();
+                        return;
+                    }
+                }
+
                 // New
                 existing = new User
                 {
