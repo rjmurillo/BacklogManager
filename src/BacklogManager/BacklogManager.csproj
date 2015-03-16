@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201503152158167_Adding rank fields to PBI.Designer.cs">
       <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503160057138_Added CreatedDate to model.cs" />
+    <Compile Include="Migrations\201503160057138_Added CreatedDate to model.Designer.cs">
+      <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503152158167_Adding rank fields to PBI.resx">
       <DependentUpon>201503152158167_Adding rank fields to PBI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503160057138_Added CreatedDate to model.resx">
+      <DependentUpon>201503160057138_Added CreatedDate to model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,3 +1,4 @@
+using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using BacklogManager.DAL;
@@ -57,16 +58,14 @@ namespace BacklogManager.Migrations
                 new BacklogItem {ID=20, Owner = users[4], Upvotes = 0, Discipline = "developer", Action = "count how many reduction bugs I can delegate", Goal = "I spend more time building features"}
             };
 
-            var group = items.GroupBy(k => k.Upvotes, e => e).OrderByDescending(k => k.Key);
-            int rank = 1;
-            foreach (var grouping in group)
+
+            var rank = 1;
+            foreach (var item in items.OrderByDescending(k => k.Upvotes))
             {
-                var votes = grouping.Key;
-                foreach (var i in grouping)
-                {
-                    i.GlobalRank = rank;
-                    rank++;
-                }
+                item.CreatedDate = DateTimeOffset.UtcNow;
+                item.GlobalRank = rank;
+                rank++;
+
             }
 
             context.BacklogItems.AddRange(items);

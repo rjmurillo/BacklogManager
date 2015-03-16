@@ -23,6 +23,7 @@ namespace BacklogManager.Models
         public string Goal { get; set; }
         public int TeamRank { get; set; }
         public int GlobalRank { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
     }
 
     public class User
