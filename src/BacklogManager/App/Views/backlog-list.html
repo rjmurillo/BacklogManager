@@ -1,5 +1,8 @@
 <div class="widget-body">
     <div class="row">
+        <button class="btn btn-xs btn-info pull-left add-new-story" title="Add new story" ng-click="addNewStory()">
+            <i class="glyphicon glyphicon-plus"></i>
+        </button>
         <div class="col-md-2 pull-right">
             <!--Sidebar content-->
             <div class="input-group search">
@@ -13,10 +16,6 @@
             </div>
         </div>
     </div>
-
-    <a title="Add new story" ng-click="addNewStory()">
-        <i class="glyphicon glyphicon-plus"></i>
-    </a>
 
     <div class="widget-main no-padding">
         <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">

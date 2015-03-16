@@ -294,6 +294,9 @@ span.discipline, span.action, span.goal {
     font-style: italic;
 }
 
+.add-new-story {
+    margin-left: 32px;
+}
 .search input {
     margin-right: 2px;
     width: 48% !important;
