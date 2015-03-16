@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".bin\bower_components\angular-poller\angular-poller.min.js" />
     <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.css" />
     <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.js" />
     <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.min.css" />

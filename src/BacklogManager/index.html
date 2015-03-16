@@ -35,7 +35,7 @@
                         <li data-ng-show="authenticated">
                             <img data-ng-src="{{authenticatedUser.avatar}}"
                                  alt="{{authenticatedUser.name}} Avatar"
-                                 class="profile-image img-circle hidden-xs nav-user-photo"/>
+                                 class="profile-image img-circle hidden-xs nav-user-photo" />
                             <span class="navbar-text" id="TwitterSignInName" ng-show="authenticated">Signed in as {{authenticatedUser.name}}</span>
                             <a ng-click="signOut()" class="navbar-text navbar-link">
                                 <span class="glyphicon glyphicon-log-out"></span>
@@ -64,6 +64,7 @@
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
     <script src=".bin/bower_components/ng-sortable/dist/ng-sortable.min.js"></script>
     <script src="//rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src=".bin/bower_components/angular-poller/angular-poller.min.js"></script>
     <script src="//oauth.io//auth/download/latest/oauth.min.js"></script>
     <!--<script src="//raw.github.com/matteosuppo/angular-oauthio/master/dist/angular-oauth.io.min.js"></script>-->
     <script src="App/Scripts/app.js"></script>

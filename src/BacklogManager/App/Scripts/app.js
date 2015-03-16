@@ -66,7 +66,7 @@ angular
         });
     });
 
-var backlogApp = angular.module("backlogApp", ["ngRoute", "ui.sortable", "ui.bootstrap", "ngStorage", /*"oauth.io",*/ "backlogControllers", "backlogServices"]);
+var backlogApp = angular.module("backlogApp", ["ngRoute", "ui.sortable", "ui.bootstrap", "ngStorage", "emguo.poller", /*"oauth.io",*/ "backlogControllers", "backlogServices"]);
 
 backlogApp.config(["$routeProvider", function ($routeProvider) {
     $routeProvider

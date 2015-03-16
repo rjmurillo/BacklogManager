@@ -1,17 +1,8 @@
 ﻿var backlogControllers = angular.module("backlogControllers", []);
 
-backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogItem", function ($scope, $modal, BacklogItem) {
+backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogItem", "poller", function ($scope, $modal, BacklogItem, poller) {
 
     $scope.orderProp = "globalRank";
-
-    $scope.editInProgressBacklogItem = {
-        action: "",
-        discipline: "",
-        goal: "",
-        upvotes: 0,
-        globalRank: 0,
-        id: 0
-    };
 
     $scope.populate = function () {
         $scope.productBacklogItems = BacklogItem.query();
@@ -55,6 +46,14 @@ backlogControllers.controller("BacklogListCtrl", ["$scope", "$modal", "BacklogIt
                 }
             });
     };
+
+    var myPoller = poller.get(BacklogItem, {
+        action: 'query',
+        delay: 60 * 1000,
+        smart: true
+    });
+    myPoller.promise
+        .then(null, null, function (result) { $scope.populate(); });
 
     $scope.populate();
 }]);

@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="widget-main no-padding">
                 <div class="dialogs backlog-item-scroll" data-ui-sortable="backlogApp.dragControlListeners" data-ng-model="productBacklogItems" id="sortable">
-                    <div class="scroll-content" data-ng-repeat="pbi in filteredResults = (productBacklogItems | filter:query | orderBy:orderProp)">
+                    <div class="scroll-content" data-ng-repeat="pbi in filteredResults = (productBacklogItems | filter:query | orderBy:orderProp)" data-ng-animate="'animate'">
                         <div class="itemdiv dialogdiv backlog-item" id="{{pbi.id}}" data-ui-sortable-item data-ng-include="'/App/Views/Partials/card.html'">
                         </div>
                     </div>
