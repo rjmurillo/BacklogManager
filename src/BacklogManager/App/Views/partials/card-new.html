@@ -4,13 +4,22 @@
         <h4 class="modal-title" ng-model="columnName">Add product backlog item</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group new-backlog-item-fields">
-            <div>
-                As a
-                <input type="text" placeholder="type of user" ng-model="discipline" required focus-me />,
-                I can <input type="text" placeholder="accomplish this goal" ng-model="action" required  />
-                so that <input type="text" placeholder="some reason" ng-model="goal" required  />.
+        <div class="form-group new-backlog-item-fields itemdiv dialogdiv backlog-item">
+            <div class="user">
+                <img alt="sa Avatar" data-ng-src="https://pbs.twimg.com/profile_images/573785723758854144/9f2yuFnf_200x200.jpeg" data-no-drag>
             </div>
+            <div class="body color-1">
+                <div class="name">
+                    <a href="#">sa</a>
+                </div>
+                <div>
+                    As a
+                    <input type="text" placeholder="type of user" ng-model="discipline" required focus-me />,
+                    I can <input type="text" placeholder="accomplish this goal" ng-model="action" required />
+                    so that <input type="text" placeholder="some reason" ng-model="goal" required />.
+                </div>
+            </div>
+            
         </div>
     </div>
     <div class="modal-footer">

@@ -41,6 +41,9 @@ body {
     min-height: 66px;
     position: relative;
 }
+.modal-footer, .modal-header {
+    border: none !important;
+}
 
     .itemdiv.dialogdiv:before {
         position: absolute;
@@ -54,6 +57,10 @@ body {
         background-color: #E1E6ED;
         border: 1px solid #D7DBDD;
         border-width: 0 1px;
+    }
+
+    .new-backlog-item-fields.itemdiv.dialogdiv:before {
+        display: none;
     }
 
     .itemdiv > .user {
@@ -297,6 +304,8 @@ span.discipline, span.action, span.goal {
 .add-new-story {
     margin-left: 25px;
 }
+
+
 .search input {
     margin-right: 2px;
     width: 48% !important;
