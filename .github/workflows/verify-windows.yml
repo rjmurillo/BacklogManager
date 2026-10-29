@@ -1,0 +1,29 @@
+name: verify-windows
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3.0.0
+      - name: dotnet build
+        run: dotnet build src/BacklogManager.sln -c Release
+      - name: msbuild publish to folder
+        run: msbuild src/BacklogManager/BacklogManager.csproj /restore /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=${{ runner.temp }}\publish /v:m
+      - name: Check publish output and Release transform
+        shell: pwsh
+        run: |
+          $pub = Join-Path $env:RUNNER_TEMP 'publish'
+          Get-ChildItem -Recurse $pub | ForEach-Object { $_.FullName.Substring($pub.Length) }
+          $cfg = Get-Content (Join-Path $pub 'Web.config') -Raw
+          if ($cfg -match 'debug="true"') { throw 'Web.Release.config transform was not applied' }
+          'Release transform applied: compilation debug attribute removed'
