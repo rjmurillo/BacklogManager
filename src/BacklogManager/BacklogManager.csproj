@@ -1,13 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.SDK.SystemWeb">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <OutputType>Library</OutputType>
-    <!-- ASP.NET on IIS loads assemblies from bin, so keep the legacy output path. -->
-    <OutputPath>bin\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- The SDK default is lowercase web.config, which fails on case-sensitive file systems. -->
+    <AppConfig>Web.config</AppConfig>
+    <!-- The legacy project did not add the Roslyn CodeDom provider or precompile views. -->
+    <ExcludeSDKDefaultPackages>true</ExcludeSDKDefaultPackages>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44326</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +33,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- Supplies Microsoft.WebApplication.targets when Visual Studio is not installed, such as under the dotnet CLI. -->
+    <PackageReference Include="MSBuild.Microsoft.VisualStudio.Web.targets" Version="14.0.0.3" PrivateAssets="all" />
     <PackageReference Include="Antlr" Version="3.4.1.9004" />
     <PackageReference Include="Bower" Version="1.3.11" />
     <PackageReference Include="EntityFramework" Version="6.1.1" />
@@ -49,12 +56,51 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include=".bin\bower_components\angular-poller\angular-poller.min.js" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.js" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.min.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.min.js" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.style.css" />
+    <Content Include=".bin\bower_components\ng-sortable\dist\ng-sortable.style.min.css" />
+    <Content Include=".bin\bower_components\ng-sortable\.bower.json" />
+    <Content Include=".bin\bower_components\ng-sortable\bower.json" />
+    <Content Include=".bin\bower_components\ng-sortable\LICENSE" />
+    <Content Include=".bin\bower_components\ng-sortable\README.md" />
+    <Content Include="App\Scripts\app.js" />
+    <Content Include="App\Scripts\controllers.js" />
+    <Content Include="App\Scripts\services.js" />
+    <Content Include="App\Styles\styles.css" />
+    <Content Include="App\Views\backlog-list.html" />
+    <Content Include="App\Views\partials\card-new.html" />
+    <Content Include="App\Views\partials\card.html" />
+    <Content Include="index.html" />
+    <None Remove="@(Content)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <None Update="Web.Debug.config;Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>14823</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44326/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>
